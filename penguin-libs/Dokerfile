@@ -1,0 +1,7 @@
+FROM python:3.7-alpine
+WORKDIR /Flask
+COPY . .
+RUN apk add --update gcc musl-dev linux-headers
+    && pip install requirements.txt
+EXPOSE 8000:80
+CMD ["gunicorn", "-b", "localhost:8000", "main:app"]
